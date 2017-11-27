@@ -34,7 +34,7 @@ gem 'jquery-rails'
 gem 'mysql2', '~> 0.3.18'
 gem 'aws-sdk', '~> 3'
 gem 'rcap'
-gem 'dotenv'
+gem 'dotenv-rails'
 group :development do
   gem 'better_errors'
   gem 'guard-bundler'
