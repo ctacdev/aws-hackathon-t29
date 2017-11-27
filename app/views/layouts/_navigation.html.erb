@@ -14,10 +14,12 @@
       <li class="nav-item <%= "active" if request.path.include? "historical" %>">
         <%= link_to "Old Alerts", historical_caps_path, class: 'nav-link' %>
       </li>
-      <li class="nav-item <%= "active" if request.path.include? "users" %>">
-        <%= link_to "Users", users_path, class: 'nav-link' %>
-      </li>
       <% if current_user %>
+        <% if current_user.admin? %>
+          <li class="nav-item <%= "active" if request.path.include? "users" %>">
+            <%= link_to "Users", users_path, class: 'nav-link' %>
+          </li>
+        <% end %>
         <li class="nav-item ">
           <%= link_to "Logout", destroy_user_session_path, class: 'nav-link' %>
         </li>
