@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
-  resources :historical_caps
+  resources :historical_caps do
+    member do 
+      get 'resend'
+    end
+  end
+
   devise_for :users
   resources :users
 
@@ -14,6 +19,6 @@ Rails.application.routes.draw do
   get 'test_cap' => 'application#test_cap'
 
 
-  root to: 'users#index'
+  root to: 'cap_forms#new'
 end
 

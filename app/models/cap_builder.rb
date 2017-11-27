@@ -125,4 +125,21 @@ class CapBuilder
     puts data
 
   end
+
+  def self.send_direct(record)
+    #alert = generate_message(record)
+    http = Net::HTTP.new("hooks.slack.com", 443)
+    http.use_ssl = true
+    path = '/services/T029DN528/B85URMY59/MoEesEuZjd1Dy2XBbeCG08I8'
+    data = '{ "text" : "' + record + '"}'
+    headers = {'Content-Type'=> 'application/json'}
+
+    resp, data = http.post(path, data, headers)
+
+    puts 'Code = ' + resp.code
+    puts 'Message = ' + resp.message
+    resp.each {|key, val| puts key + ' = ' + val}
+    puts data
+
+  end
 end

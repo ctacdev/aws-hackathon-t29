@@ -1,10 +1,10 @@
 class HistoricalCapsController < ApplicationController
-  before_action :set_historical_cap, only: [:show, :edit, :update, :destroy]
+  before_action :set_historical_cap, only: [:show, :edit, :update, :destroy, :resend]
 
   # GET /historical_caps
   # GET /historical_caps.json
   def index
-    @historical_caps = HistoricalCap.all
+    @historical_caps = HistoricalCap.all.order(created_at: :desc)
   end
 
   # GET /historical_caps/1
@@ -16,6 +16,10 @@ class HistoricalCapsController < ApplicationController
     end
   end
 
+  def resend
+    CapBuilder.send_direct(@historical_cap.data)
+    redirect_to historical_caps_path
+  end
   # GET /historical_caps/new
   def new
     @historical_cap = HistoricalCap.new
