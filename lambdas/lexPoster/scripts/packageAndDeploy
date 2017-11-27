@@ -1,0 +1,6 @@
+#!/bin/bash
+if [ ! -f "deploy" ]; then
+	mkdir -p deploy
+fi
+
+zip -r deploy/lexPoster.zip index.js package.json node_modules

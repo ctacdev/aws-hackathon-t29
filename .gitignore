@@ -87,3 +87,7 @@ pickle-email-*.html
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
+
+
+lambdas/lexPoster/deploy/
+lambdas/lexPoster/node_modules/
