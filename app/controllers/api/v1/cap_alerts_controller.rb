@@ -1,11 +1,8 @@
 module Api::V1
   class CapAlertsController < ActionController::API
-
-    wrap_parameters format: [:json]
-
     def create
-      cap_alert = CapBuilder.from_json(cap_alert_params)
-      render json: cap_alert, status: :created
+      cap_alert = CapBuilder.new.generate_message(cap_alert_params)
+      render json: {body: cap_alert.to_xml}, status: :created
     end
 
     private

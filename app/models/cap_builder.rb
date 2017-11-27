@@ -3,12 +3,6 @@ require 'net/http'
 require 'uri'
 
 class CapBuilder
-
-  def self.from_json(json)
-    attributes = JSON.parse(json, symbolize_keys: true)
-  end
-
-
   def self.generate_message
     alert = RCAP::CAP_1_2::Alert.new do |alert|
       alert.sender   = 'cape_town_disaster_relief@capetown.municipal.za'
@@ -40,7 +34,30 @@ class CapBuilder
   end
 
   def generate_message(record)
-    #this one should take the actual model and do interesting things
+    if !(attributes = record.fetch(:alert, nil))
+      return nil
+    end
+    RCAP::CAP_1_2::Alert.new do |alert|
+      attributes.each do |key, value|
+        begin
+          if value.is_a?(String) && alert.respond_to?("#{key.underscore}=")
+            if 'sent' == key
+              alert.send("#{key.underscore}=", DateTime.parse(value))
+            end
+            alert.send("#{key.underscore}=", value)
+          elsif alert.send(key.underscore).is_a?(Array)
+            if 'references' == key
+              # references are split by WHITESPACE
+              alert.send(key.underscore).concat value.split(' ')
+            else
+              alert.send(key.underscore) << value
+            end
+          end
+        rescue NoMethodError => _error
+          #
+        end
+      end
+    end
   end
 
   def self.send_message_to_slack(record)
