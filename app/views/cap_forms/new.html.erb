@@ -1,0 +1,70 @@
+<div>
+  <%= form_for @capform do |f| %>
+    <div class="form-group">
+      <%= f.label :sender, "Sender" %>
+      <%= f.text_field :sender, :class => 'form-control', :placeholder=>"email@email.com" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :status %>
+      <%= f.select :status, options_for_select(RCAP::CAP_1_2::Alert::VALID_STATUSES),{} ,{:class => 'form-control'} %>
+      
+    </div>
+    <div class="form-group">
+      <%= f.label :message_type %>
+      <%= f.select :message_type, options_for_select(RCAP::CAP_1_2::Alert::VALID_MSG_TYPES), {}, {:class => 'form-control'} %>
+    </div>
+    <div class="form-group">
+      <%= f.label :scope %>
+      <%= f.select :scope, options_for_select(RCAP::CAP_1_2::Alert::VALID_SCOPES), {}, {:class => 'form-control'} %>
+    </div>
+    <div class="form-group">
+      <%= f.label :info_event %>
+      <%= f.text_field :info_event, :class => 'form-control', :placeholder=>"Liquid Petro Fire" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :info_language %>
+      <%= f.select :info_language, options_for_select(["en-US", "en-ZA"]), {}, {:class => 'form-control'} %>
+    </div>
+    <div class="form-group">
+      <%= f.label :info_categories %>
+      <%= f.select :info_categories, options_for_select(RCAP::CAP_1_2::Info::VALID_CATEGORIES), {}, {:class => 'form-control', :multiple => true} %>
+    </div>
+    <div class="form-group">
+      <%= f.label :info_urgency %>
+      <%= f.select :info_urgency, options_for_select(RCAP::CAP_1_2::Info::VALID_URGENCIES), {}, {:class => 'form-control'} %>
+    </div>
+    <div class="form-group">
+      <%= f.label :info_severity %>
+      <%= f.select :info_severity, options_for_select(RCAP::CAP_1_2::Info::VALID_SEVERITIES), {}, {:class => 'form-control'} %>
+    </div>
+    <div class="form-group">
+      <%= f.label :info_certainty %>
+      <%= f.select :info_certainty, options_for_select(RCAP::CAP_1_2::Info::VALID_CERTAINTIES), {}, {:class => 'form-control'} %>
+      </select>
+    </div>
+    <div class="form-group">
+      <%= f.label :info_headline %>
+      <%= f.text_field :info_headline, :class => 'form-control', :placeholder=>"Liquid Petro Fire" %>
+    </div>
+     <div class="form-group">
+      <%= f.label :info_description %>
+      <%= f.text_area :info_description, :class => 'form-control', :placeholder=>"Liquid Petro Fire" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :area_description %>
+      <%= f.text_field :area_description, :class => 'form-control' %>
+    </div>
+    <div class="form-group">
+      <%= f.label :area_geocode_name %>
+      <%= f.text_field :area_geocode_name, :class => 'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :area_geocode %>
+      <%= f.text_field :area_geocode, :class => 'form-control' %>
+    </div>
+
+    <%= f.submit 'Create CAP', :class => 'btn btn-primary' %>
+  <% end %>
+</div>

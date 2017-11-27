@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   resources :users
 
-  get 'submission' => 'submission#new'
+  resources :cap_forms, only: [:new, :create]
 
   namespace :api do
     namespace :v1 do

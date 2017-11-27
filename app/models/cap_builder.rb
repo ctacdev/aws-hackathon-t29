@@ -60,6 +60,53 @@ class CapBuilder
     end
   end
 
+  def self.generate_from_form(cap_form)
+    alert = RCAP::CAP_1_2::Alert.new do |alert|
+      alert.sender   = cap_form.sender
+      alert.status   = cap_form.status
+      alert.msg_type = cap_form.message_type
+      alert.scope    = cap_form.scope
+
+      alert.add_info do |info|
+        info.event       = cap_form.info_event
+        info.language    = cap_form.info_language
+        cap_form.info_categories.each do |cat|
+          info.categories << cat  if !cat.empty?
+        end
+        info.urgency     = cap_form.info_urgency
+        info.severity    = cap_form.info_severity
+        info.certainty   = cap_form.info_certainty
+        info.headline    = cap_form.info_headline
+        info.description = cap_form.info_description
+        info.add_area do |area|
+          area.area_desc = cap_form.area_description
+          area.add_geocode do |geocode|
+            geocode.name  = cap_form.area_geocode_name
+            geocode.value = cap_form.area_geocode
+          end
+        end
+      end
+    end
+  end
+
+  def self.send_message_to_slack_form_form(cap_form)
+    alert = generate_from_form(cap_form)
+    #alert = generate_message(record)
+    http = Net::HTTP.new("hooks.slack.com", 443)
+    http.use_ssl = true
+    path = '/services/T029DN528/B85URMY59/MoEesEuZjd1Dy2XBbeCG08I8'
+    data = '{ "text" : "' + alert.to_xml + '"}'
+    headers = {'Content-Type'=> 'application/json'}
+
+    resp, data = http.post(path, data, headers)
+
+    puts 'Code = ' + resp.code
+    puts 'Message = ' + resp.message
+    resp.each {|key, val| puts key + ' = ' + val}
+    puts data
+
+  end
+
   def self.send_message_to_slack(record)
     alert = generate_message
     #alert = generate_message(record)
