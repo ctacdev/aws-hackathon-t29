@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @historical_cap.user_id %>
+</p>
+
+<p>
+  <strong>Data:</strong>
+  <%= @historical_cap.data %>
+</p>
+
+<%= link_to 'Edit', edit_historical_cap_path(@historical_cap) %> |
+<%= link_to 'Back', historical_caps_path %>

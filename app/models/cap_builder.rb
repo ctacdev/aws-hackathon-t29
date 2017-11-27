@@ -91,6 +91,7 @@ class CapBuilder
 
   def self.send_message_to_slack_form_form(cap_form)
     alert = generate_from_form(cap_form)
+    HistoricalCap.create(data: alert.to_xml)
     #alert = generate_message(record)
     http = Net::HTTP.new("hooks.slack.com", 443)
     http.use_ssl = true

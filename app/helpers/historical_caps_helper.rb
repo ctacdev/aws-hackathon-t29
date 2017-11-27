@@ -1,0 +1,2 @@
+module HistoricalCapsHelper
+end

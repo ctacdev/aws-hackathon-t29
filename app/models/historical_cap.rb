@@ -1,0 +1,2 @@
+class HistoricalCap < ApplicationRecord
+end

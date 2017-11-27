@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :historical_caps
   devise_for :users
   resources :users
 

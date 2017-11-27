@@ -1,0 +1,27 @@
+<%= form_with(model: historical_cap, local: true) do |form| %>
+  <% if historical_cap.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(historical_cap.errors.count, "error") %> prohibited this historical_cap from being saved:</h2>
+
+      <ul>
+      <% historical_cap.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :user_id %>
+    <%= form.number_field :user_id, id: :historical_cap_user_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :data %>
+    <%= form.text_area :data, id: :historical_cap_data %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

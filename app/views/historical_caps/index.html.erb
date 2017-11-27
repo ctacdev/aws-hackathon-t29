@@ -1,0 +1,23 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Historical Caps</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Data</th>
+      <th colspan="1"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @historical_caps.each do |historical_cap| %>
+      <tr>
+        <td><%= historical_cap.user_id %></td>
+        <td><%= historical_cap.data %></td>
+        <td><%= link_to 'Show', historical_cap_path(historical_cap,format: :xml), :target => "_blank" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
