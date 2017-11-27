@@ -1,21 +1,16 @@
 <%# navigation styled for Bootstrap 4.0 %>
-<!-- <div class="container"> -->
-  <nav class="navbar navbar-dark bg-inverse">
-    <a class="navbar-brand" href="#">
-      <%= image_tag("fia-logo-color.svg", :alt => "fia logo", :height => 30, :class=> "d-inline-block align-top") %> CAP Submission
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+  <a class="navbar-brand" href="#">
+      <%= image_tag("fia-logo-color.svg", :alt => "fia logo", :height => 30, :class=> "d-inline-block align-top") %> &nbsp;CAP Submission
     </a>
-    <ul class="nav navbar-nav clearfix">
-      <li class="nav-item">
-        <button class="navbar-toggler hidden-sm-up nav-link" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar2" aria-controls="exCollapsingNavbar2" aria-expanded="false" aria-label="Toggle navigation">
-          &#9776;
-        </button>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarCollapse">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <%= link_to "Users", root_path, class: 'nav-link' %>
       </li>
     </ul>
-    <div class="collapse navbar-toggleable-xs" id="exCollapsingNavbar2">
-      <%= link_to "Rails bootstrap", root_path, class: 'navbar-brand' %>
-      <ul class="nav navbar-nav">
-        <%= render 'layouts/navigation_links' %>
-      </ul>
-    </div>
-  </nav>
-<!-- </div> -->
+  </div>
+</nav>
