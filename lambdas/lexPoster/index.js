@@ -1,10 +1,17 @@
 var request = require('request');
 
 exports.handler = (event, context, callback) => {
-    console.log(event)
-    callback(null, 'done');
-    // request.post('http://www.example.com', { 
-    //     json: { key: 'value' } 
+    console.log(JSON.stringify(event))
+    var response = {
+        sessionAttributes:{},
+        dialogAction: {
+            fulfillmentState: "Fulfilled", //or Failed
+            type: "Close"
+        }
+    }
+    callback(null, response);
+    // request.post('http://www.example.com', {
+    //     json: { key: 'value' }
     // }, function (error, response, body) {
     //         if (error){
     //             console.log(body)
