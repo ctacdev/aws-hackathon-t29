@@ -10,6 +10,8 @@ gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
 gem 'jbuilder', '~> 2.5'
+
+gem 'rcap'
 group :development, :test do
   gem 'pry'
   gem 'pry-rails'
@@ -33,6 +35,7 @@ gem 'jquery-rails'
 gem 'mysql2', '~> 0.3.18'
 gem 'aws-sdk', '~> 3'
 group :development do
+  gem 'dotenv'
   gem 'better_errors'
   gem 'guard-bundler'
   gem 'guard-rails'
