@@ -1,2 +1,10 @@
-# aws-hackathon-t29
+aws-hackathon-t29
+--------------------------------------------------------------------------------
+
 CTAC's work on the Federation for Internet Alerts hackathon at AWS re:Invent 2017
+
+## Components & Services
+  - lex
+  - registration
+  - admin
+  - whatever
