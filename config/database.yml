@@ -15,7 +15,7 @@ development:
   database: aws-hackathon-t29_development
   pool: 5
   username: root
-  password: 
+  password:
   host: localhost
 
 # Warning: The database defined as "test" will be erased and
@@ -28,15 +28,16 @@ test:
   database: aws-hackathon-t29_test
   pool: 5
   username: root
-  password: 
+  password:
   host: localhost
 
 production:
   adapter: mysql2
   encoding: utf8
   reconnect: false
-  database: aws-hackathon-t29_production
+  database: <%= ENV['RDS_DB_NAME'] %>
+  username: <%= ENV['RDS_USERNAME'] %>
+  password: <%= ENV['RDS_PASSWORD'] %>
+  host: <%= ENV['RDS_HOSTNAME'] %>
+  port: <%= ENV['RDS_PORT'] %>
   pool: 5
-  username: root
-  password: 
-  host: localhost
