@@ -4,5 +4,9 @@ Rails.application.routes.draw do
 
 
   get 'test_cap' => 'application#test_cap'
+
+
+  root to: 'users#index'
+  
 end
 

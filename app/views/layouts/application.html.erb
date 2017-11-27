@@ -5,6 +5,8 @@
     <title><%= content_for?(:title) ? yield(:title) : "Aws Hackathon T29" %></title>
     <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Aws Hackathon T29" %>">
     <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag "application" %>
+    <%= javascript_include_tag "application" %>
   </head>
   <body>
     <header>
