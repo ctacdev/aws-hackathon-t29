@@ -1,0 +1,8 @@
+{
+  "name": "t29",
+  "description": "fia",
+  "memory": 128,
+  "timeout": 5,
+  "role": "arn:aws:iam::527060216689:role/t29_lambda_function",
+  "environment": {}
+}
