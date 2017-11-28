@@ -2,7 +2,7 @@ require 'rcap'
 require 'net/http'
 require 'uri'
 
-class CapForm 
+class CapForm
   include ActiveModel::Model
   @data = []
 
@@ -20,7 +20,9 @@ class CapForm
     :info_description,
     :area_description,
     :area_geocode_name,
-    :area_geocode
+    :area_geocode,
+    :area_circle_lattitude,
+    :area_circle_longitude
     )
 
 end

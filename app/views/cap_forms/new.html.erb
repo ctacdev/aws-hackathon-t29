@@ -9,7 +9,7 @@
     <div class="form-group">
       <%= f.label :status %>
       <%= f.select :status, options_for_select(RCAP::CAP_1_2::Alert::VALID_STATUSES),{} ,{:class => 'form-control'} %>
-      
+
     </div>
     <div class="form-group">
       <%= f.label :message_type %>
@@ -61,10 +61,22 @@
       <%= f.label :area_geocode_name %>
       <%= f.text_field :area_geocode_name, :class => 'form-control' %>
     </div>
-
     <div class="form-group">
       <%= f.label :area_geocode %>
       <%= f.text_field :area_geocode, :class => 'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :area_circle_lattitude %>
+      <%= f.text_field :area_circle_lattitude, :class => 'form-control' %>
+    </div>
+    <div class="form-group">
+      <%= f.label :area_circle_longitude %>
+      <%= f.text_field :area_circle_longitude, :class => 'form-control' %>
+    </div>
+
+    <div id="map">
+
     </div>
 
     <%= f.submit 'Create CAP', :class => 'btn btn-primary' %>

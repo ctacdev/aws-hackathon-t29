@@ -15,7 +15,7 @@ class CapFormsController < ApplicationController
   private
 
   def admin_only
-    unless current_user.admin? 
+    unless current_user.admin?
       redirect_to root_path, :alert => "Access denied."
     end
   end
@@ -35,6 +35,8 @@ class CapFormsController < ApplicationController
       :area_description,
       :area_geocode_name,
       :area_geocode,
+      :area_circle_lattitude,
+      :area_circle_longitude,
       info_categories:[]
     )
   end

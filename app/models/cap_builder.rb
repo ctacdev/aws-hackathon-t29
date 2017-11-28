@@ -60,9 +60,20 @@ class CapBuilder
         info.description = cap_form.info_description
         info.add_area do |area|
           area.area_desc = cap_form.area_description
-          area.add_geocode do |geocode|
-            geocode.name  = cap_form.area_geocode_name
-            geocode.value = cap_form.area_geocode
+
+          if cap_form.area_geocode_name.present? && cap_form.area_geocode.present?
+            area.add_geocode do |geocode|
+              geocode.name  = cap_form.area_geocode_name
+              geocode.value = cap_form.area_geocode
+            end
+          end
+
+          if cap_form.area_circle_lattitude.present? && cap_form.area_circle_longitude.present?
+            area.add_circle do |circle|
+              circle.lattitude = cap_form.area_circle_lattitude
+              circle.longitude = cap_form.area_circle_longitude
+              circle.radius = "100"
+            end
           end
         end
       end
