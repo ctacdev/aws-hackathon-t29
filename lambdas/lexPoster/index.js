@@ -64,7 +64,7 @@ exports.handler = (event, context, callback) => {
     var payload = {
     	alert:{
     		identifier:new Date().getTime() + '',
-    		sender: 'ABC123def',
+    		sender: 'user' + Math.floor(Math.random() * 200) + '@example.com',
     		sent:new Date().toISOString(),
     		status:status,
     		msgType:event.currentIntent.slots.messageType,
