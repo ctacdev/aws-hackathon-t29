@@ -4,6 +4,7 @@ module Api::V1
       json = underscore_keys(cap_alert_params.to_h).to_json
       cap_alert = RCAP::CAP_1_2::Alert.from_json(json)
       if cap_alert.valid?
+        Slack.post_to_channel(cap_alert.to_xml)
         render json: {body: cap_alert.to_xml}, status: :created
       else
         render json: {errors: cap_alert.errors.full_messages}, status: :unprocessable_entity
