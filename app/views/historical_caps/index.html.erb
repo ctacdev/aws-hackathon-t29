@@ -5,7 +5,6 @@
 <table class="table">
   <thead>
     <tr>
-      <th>User</th>
       <th>Data</th>
       <th>Created At</th>
       <th colspan="2"></th>
@@ -15,7 +14,6 @@
   <tbody>
     <% @historical_caps.each do |historical_cap| %>
       <tr>
-        <td><%= historical_cap.user_id %></td>
         <td><%= historical_cap.data %></td>
         <td><%= historical_cap.created_at %></td>
         <td><%= link_to 'Show', historical_cap_path(historical_cap,format: :xml), :target => "_blank" %></td>
