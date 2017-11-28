@@ -19,7 +19,9 @@
         <td><%= historical_cap.data %></td>
         <td><%= historical_cap.created_at %></td>
         <td><%= link_to 'Show', historical_cap_path(historical_cap,format: :xml), :target => "_blank" %></td>
-        <td><%= link_to 'Resend', resend_historical_cap_path(historical_cap) %></td>
+        <% if current_user %>
+          <td><%= link_to 'Resend', resend_historical_cap_path(historical_cap) %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>

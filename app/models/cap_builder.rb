@@ -20,6 +20,10 @@ class CapBuilder
         info.certainty   = RCAP::CAP_1_2::Info::CERTAINTY_OBSERVED
         info.headline    = 'LIQUID PETROLEOUM TANKER FIRE ON N2 INCOMING FREEWAY'
         info.description = 'A liquid petroleoum tanker has caught fire on the N2 incoming freeway 1km after the R300 interchange.  Municipal fire fighting crews have been dispatched. Traffic control officers are on the scene and have diverted traffic onto alternate routes.'
+        info.add_parameter do |parameter|
+          parameter.name = "EventID"
+          parameter.value = "13970876"
+        end
         info.add_area do |area|
           area.area_desc = 'N2 Highway/R300 Interchange'
           area.add_geocode do |geocode|
@@ -34,30 +38,6 @@ class CapBuilder
   end
 
   def generate_message(record)
-    if !(attributes = record.fetch(:alert, nil))
-      return nil
-    end
-    RCAP::CAP_1_2::Alert.new do |alert|
-      attributes.each do |key, value|
-        begin
-          if value.is_a?(String) && alert.respond_to?("#{key.underscore}=")
-            if 'sent' == key
-              alert.send("#{key.underscore}=", DateTime.parse(value))
-            end
-            alert.send("#{key.underscore}=", value)
-          elsif alert.send(key.underscore).is_a?(Array)
-            if 'references' == key
-              # references are split by WHITESPACE
-              alert.send(key.underscore).concat value.split(' ')
-            else
-              alert.send(key.underscore) << value
-            end
-          end
-        rescue NoMethodError => _error
-          #
-        end
-      end
-    end
   end
 
   def self.generate_from_form(cap_form)

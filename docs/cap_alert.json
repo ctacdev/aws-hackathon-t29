@@ -9,7 +9,7 @@
     "references": "trinet@caltech.edu,TRI13970876.1,2003-06-11T20:30:00-07:00",
     "infos": [
       {
-        "category": "Geo",
+        "categories": ["Geo"],
         "event": "Earthquake",
         "urgency": "Past",
         "severity": "Minor",
@@ -37,8 +37,7 @@
         ],
         "areas": [
           {
-            "areaDesc": "1 mi. WSW of Brawley, CA; 11 mi. N of El Centro, CA; 30 mi. E of OCOTILLO (quarry); 1 mi. N of the Imperial Fault",
-            "circles": ["32.9525,-115.5527 0"],
+            "areaDesc": "This is a test",
             "geocodes": [
               {
                 "Intersection": "N2-15"
@@ -50,4 +49,3 @@
     ]
   }
 }
-
