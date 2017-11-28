@@ -35,9 +35,13 @@ function getCertainty(certainty){
     }
 }
 
+function titleCase(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
 exports.handler = (event, context, callback) => {
-    console.log(JSON.stringify(event))
-    var response = {
+    // console.log(JSON.stringify(event))
+    var lexResponse = {
         sessionAttributes:{},
         dialogAction: {
             fulfillmentState: "Fulfilled", //or Failed
@@ -52,21 +56,56 @@ exports.handler = (event, context, callback) => {
         getCertainty(event.currentIntent.slots.certainty) + ' ' +
         'Urgency: ' + event.currentIntent.slots.urgency + '.'
 
-    console.log(eventMessage);
+    var payload = {
+    	alert:{
+    		identifier:new Date().getTime() + '',
+    		sender: 'ABC123def',
+    		sent:new Date().toISOString(),
+    		status:event.currentIntent.slots.statusType,
+    		msgType:event.currentIntent.slots.messageType,
+    		scope:event.currentIntent.slots.scope,
+    		infos:[
+    			{
+    				categories:[titleCase(event.currentIntent.slots.category)],
+    				// event:eventMessage,
+    				event:event.currentIntent.slots.event,
+    				urgency:titleCase(event.currentIntent.slots.urgency),
+    				severity:titleCase(event.currentIntent.slots.severity),
+    				certainty:titleCase(event.currentIntent.slots.certainty),
+    				senderName:event.currentIntent.slots.name,
+                    areas:[
+        				{
+        					areaDesc:'Alert Location',
+        					geocodes:[
+        						{
+        							ZipCode:event.currentIntent.slots.address
+        						}
+        					]
+        				}
+        			]
+    			}
+    		]
+    	}
+    }
 
-    callback(null, response);
+    console.log('Sending payload:');
+    console.log(JSON.stringify(payload));
 
-    // request.post('http://www.example.com', {
-    //     json: { key: 'value' }
-    // }, function (error, response, body) {
-    //         if (error){
-    //             console.log(body)
-    //             callback(null, 'Error');
-    //         }
-    //         if (!error && response.statusCode == 200) {
-    //             console.log(body)
-    //             callback(null, 'Complete');
-    //         }
-    //     }
-    // );
+    request.post('https://fiademo.ctacdev.com/api/v1/cap_alerts', {
+        json: payload
+    }, function (error, response, body) {
+            console.log('Done sending...');
+            console.log('error:' + error);
+            console.log('response:' + JSON.stringify(response));
+            console.log('body:' + JSON.stringify(body));
+            if (error){
+                console.log(body)
+                callback(null, 'Error');
+            } else if (!error && response.statusCode == 201) {
+                console.log(body)
+                callback(null, lexResponse);
+            }
+        }
+    );
+    callback(null, lexResponse);
 };
