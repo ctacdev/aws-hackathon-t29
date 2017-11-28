@@ -8,9 +8,11 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarCollapse">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item <%= "active" if request.path.include? "cap_forms" %>">
-        <%= link_to "New Alert", new_cap_form_path, class: 'nav-link' %>
-      </li>
+      <% if current_user %>
+        <li class="nav-item <%= "active" if request.path.include? "cap_forms" %>">
+          <%= link_to "New Alert", new_cap_form_path, class: 'nav-link' %>
+        </li>
+      <% end %>
       <li class="nav-item <%= "active" if request.path.include? "historical" %>">
         <%= link_to "Old Alerts", historical_caps_path, class: 'nav-link' %>
       </li>
