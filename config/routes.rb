@@ -6,8 +6,9 @@ Rails.application.routes.draw do
   end
 
   devise_for :users
-  resources :users
-
+  scope "/admin" do
+    resources :users
+  end
   resources :cap_forms, only: [:new, :create]
 
   namespace :api do
