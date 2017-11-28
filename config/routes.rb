@@ -1,19 +1,21 @@
 Rails.application.routes.draw do
+  devise_for :users
+
   authenticate :user do
-    resources :historical_caps, only: [:new, :create, :edit, :update, :destroy] do
+    resources :historical_caps, only: [:edit, :update, :destroy] do
       member do
         get 'resend'
       end
     end
+
+    resources :cap_forms, only: [:new, :create]
+
+    scope "/admin" do
+      resources :users
+    end
   end
 
   resources :historical_caps, only: [:index, :show]
-
-  devise_for :users
-  scope "/admin" do
-    resources :users
-  end
-  resources :cap_forms, only: [:new, :create]
 
   namespace :api do
     namespace :v1 do
@@ -23,6 +25,5 @@ Rails.application.routes.draw do
 
   get 'test_cap' => 'application#test_cap'
 
-
-  root to: '#new'
+  root to: 'historical_caps#index'
 end
