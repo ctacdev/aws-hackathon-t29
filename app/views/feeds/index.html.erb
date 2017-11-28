@@ -22,7 +22,7 @@
         <td><%= parsed.infos[0].urgency %></td>
         <td><%= parsed.infos[0].severity %></td>
         <td><%= historical_cap.created_at %></td>
-        <td><%= link_to 'Show', historical_cap_path(historical_cap, format: :xml), :target => "_blank" %></td>
+        <td><%= link_to 'Show', historical_cap_path(historical_cap, format: :xml), :target => "_blank", :class=> "btn btn-success" %></td>
       </tr>
     <% end %>
   </tbody>
