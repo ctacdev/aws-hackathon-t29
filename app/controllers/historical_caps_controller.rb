@@ -11,7 +11,7 @@ class HistoricalCapsController < ApplicationController
   # GET /historical_caps/1.json
   def show
     respond_to do |format|
-      format.html {}
+      format.html {  }
       format.xml { render xml: @historical_cap.data }
     end
   end
