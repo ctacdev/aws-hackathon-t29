@@ -3,7 +3,8 @@
 <table class="table">
   <thead>
     <tr>
-      <th>Data</th>
+      <th>Sender</th>
+      <th>Event</th>
       <th>Created At</th>
       <th colspan="2"></th>
     </tr>
@@ -12,11 +13,13 @@
   <tbody>
     <% @historical_caps.each do |historical_cap| %>
       <tr>
-        <td><%= historical_cap.data %></td>
+        <% alert = RCAP::CAP_1_2::Alert.from_xml(historical_cap.data) %>
+        <td><%= alert.sender %></td>
+        <td><%= alert.infos[0].event %></td>
         <td><%= historical_cap.created_at %></td>
-        <td><%= link_to 'Show', historical_cap_path(historical_cap,format: :xml), :target => "_blank" %></td>
+        <td><%= link_to 'Show', historical_cap_path(historical_cap,format: :xml), :target => "_blank", :class=> "btn btn-success" %></td>
         <% if current_user %>
-          <td><%= link_to 'Resend', resend_historical_cap_path(historical_cap) %></td>
+          <td><%= link_to 'Resend', resend_historical_cap_path(historical_cap), :class => "btn btn-danger" %></td>
         <% end %>
       </tr>
     <% end %>
