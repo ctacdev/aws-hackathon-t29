@@ -15,6 +15,12 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :feeds, only: [:index] do
+    collection do
+      get 'latest'
+    end
+  end
+
   resources :historical_caps, only: [:index, :show]
 
   namespace :api do
@@ -25,5 +31,5 @@ Rails.application.routes.draw do
 
   get 'test_cap' => 'application#test_cap'
 
-  root to: 'historical_caps#index'
+  root to: 'feeds#index'
 end

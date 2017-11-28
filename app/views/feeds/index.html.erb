@@ -1,0 +1,31 @@
+<h1>Latest Activity</h1>
+
+<%= hidden_field_tag :since, @latest %>
+
+<table class="table js-feed-table">
+
+  <thead>
+    <tr>
+      <th>Event</th>
+      <th>Urgency</th>
+      <th>Severity</th>
+      <th>Created At</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @feed.each do |historical_cap| %>
+      <% parsed = historical_cap.parse %>
+      <tr>
+        <td><%= parsed.infos[0].event || "No event text available" %></td>
+        <td><%= parsed.infos[0].urgency %></td>
+        <td><%= parsed.infos[0].severity %></td>
+        <td><%= historical_cap.created_at %></td>
+        <td><%= link_to 'Show', historical_cap_path(historical_cap, format: :xml), :target => "_blank" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= javascript_include_tag 'feeds' %>
