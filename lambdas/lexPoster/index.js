@@ -56,12 +56,17 @@ exports.handler = (event, context, callback) => {
         getCertainty(event.currentIntent.slots.certainty) + ' ' +
         'Urgency: ' + event.currentIntent.slots.urgency + '.'
 
+    var status = 'Actual'
+    if(event.currentIntent.slots.statusType){
+        status = event.currentIntent.slots.statusType;
+    }
+
     var payload = {
     	alert:{
     		identifier:new Date().getTime() + '',
     		sender: 'ABC123def',
     		sent:new Date().toISOString(),
-    		status:event.currentIntent.slots.statusType,
+    		status:status,
     		msgType:event.currentIntent.slots.messageType,
     		scope:event.currentIntent.slots.scope,
     		infos:[
